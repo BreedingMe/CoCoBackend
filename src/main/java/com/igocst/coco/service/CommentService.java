@@ -38,6 +38,7 @@ public class CommentService {
         //Comment를 하나 만들고
         Comment comment = Comment.builder()
                 .content(commentCreateRequestDto.getContent())
+                .createDate(commentCreateRequestDto.getCreateDate())
                 .build();
         /*주인에게 연관관계 메소드를 통해 "이 댓글 내거야!" 하고 말해줌
         comment는 repo에서 꺼내온게 아니기 때문에 영속성이 없는상태
@@ -66,6 +67,7 @@ public class CommentService {
                     .comments(c.getContent())
                     .nickname(c.getMember().getNickname())
                     //c.getPost().getComments는 결국 댓글의 게시글을 불러와서 다시 그 댓글을 다 찍어준 것= 값이 두번씩 찍히는 에러
+                    .createDate(c.getCreateDate())
                     .status("댓글 불러오기 완료")
                     .build());
         }

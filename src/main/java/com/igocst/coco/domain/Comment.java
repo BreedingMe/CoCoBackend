@@ -5,6 +5,7 @@ import com.igocst.coco.domain.timestamped.Timestamped;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Setter
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Comment extends Timestamped {
+public class Comment {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) //MySQL에서는 IDENTITY가 먹힌다. (오라클 등에서는 안먹힘!)
     @Column(name = "COMMENT_ID")
@@ -30,6 +31,9 @@ public class Comment extends Timestamped {
 
     @Column(nullable = false)
     private String content;
+
+    @Column(nullable = false)
+    private LocalDateTime createDate;
 
     public void addMember(Member member) {
         this.member = member;
